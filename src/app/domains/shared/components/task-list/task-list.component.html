@@ -1,0 +1,84 @@
+<div class="max-w-xl mx-auto p-4 sm:p-6 mt-10 sm:mt-20 bg-white shadow-md rounded-md">
+  <h1 class="text-xl sm:text-2xl font-bold mb-4 text-center">Lista de Tareas</h1>
+
+  <div class="flex flex-col sm:flex-row flex-wrap justify-center space-y-2 sm:space-x-2 sm:space-y-0 mb-6">
+    <button
+      (click)="changeFilter('todas')"
+      class="w-full sm:flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+    >
+      Todas
+    </button>
+    <button
+      (click)="changeFilter('completadas')"
+      class="w-full sm:flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+    >
+      Completadas
+    </button>
+    <button
+      (click)="changeFilter('pendientes')"
+      class="w-full sm:flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+    >
+      Pendientes
+    </button>
+    <a
+      [routerLink]="['/']"
+      class="w-full sm:flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none text-center"
+    >
+      Crear Tarea
+    </a>
+  </div>
+
+  <ul class="space-y-4">
+    <li
+      *ngFor="let task of filteredTasks"
+      class="p-4 bg-gray-50 border border-gray-200 rounded-md"
+    >
+      <div class="flex flex-col sm:flex-row justify-between items-center sm:space-x-4 mb-4">
+        <span
+          [class.line-through]="task.completed"
+          [class.text-gray-400]="task.completed"
+          class="text-lg font-semibold text-center sm:text-left"
+        >
+          {{ task.title }}
+        </span>
+        <span class="text-lg font-semibold mt-2 sm:mt-0 text-center sm:text-left">
+          {{ task.deadline }}
+        </span>
+
+        <button
+          (click)="markasCompleted(task)"
+          class="mt-2 sm:mt-0 px-3 py-2 text-white rounded-md focus:outline-none w-full sm:w-auto"
+          [ngClass]="{
+            'bg-green-500 hover:bg-green-600': !task.completed,
+            'bg-red-500 hover:bg-red-600': task.completed
+          }"
+        >
+          {{ task.completed ? 'Desmarcar' : 'Completar' }}
+        </button>
+      </div>
+
+      <div *ngIf="task.people && task.people.length > 0" class="mt-1">
+        <h4 class="text-md sm:text-lg font-bold mb-2">Personas asociadas:</h4>
+        <ul class="space-y-4">
+          <li *ngFor="let person of task.people" class="pl-2 sm:pl-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <h2 class="text-base sm:text-lg font-semibold">
+                {{ person.name }} ({{ person.age }} años)
+              </h2>
+            </div>
+
+            <div class="ml-4 sm:ml-6 mt-2 sm:mt-0">
+              <h3 class="text-sm sm:text-base font-semibold">Habilidades:</h3>
+              <ul class="list-disc list-inside">
+                <li *ngFor="let skills of person.skills" class="text-sm sm:text-base">
+                  {{ skills.ability }}
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </li>
+  </ul>
+</div>

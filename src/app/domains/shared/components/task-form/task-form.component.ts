@@ -5,6 +5,8 @@
   import { Router } from '@angular/router';
   import { ReactiveFormsModule } from '@angular/forms';
   import { RouterModule } from '@angular/router';
+  import Swal from 'sweetalert2';
+
 
   @Component({
     selector: 'app-task-form',
@@ -53,6 +55,14 @@
 
     deletePerson(index: number): void {
       this.people.removeAt(index);
+
+      Swal.fire({
+        icon: "success",
+        title: "Persona eliminada exitosamente",
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 1500
+      });
     }
 
     getSkills(indexPersona: number): FormArray {
@@ -86,10 +96,9 @@
     }
 
     onSubmit(): void {
-      console.log('Formulario enviado');
 
-      console.log('Valores del formulario:', this.taskForm.value);
       if (this.taskForm.valid) {
+
         const nuevaTarea = {
           id: Date.now(),
           ...this.taskForm.value,
@@ -98,9 +107,26 @@
         console.log('Nueva tarea:', nuevaTarea);
         this.DetalleTareaService.addTask(nuevaTarea);
         this.router.navigate(['/tareas']);
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Tarea Guardada',
+          text: 'Tarea guardada exitosamente',
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
       } else {
-        console.log('Formulario no válido', this.taskForm.errors);
         this.taskForm.markAllAsTouched();
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Formulario no válido',
+          text: 'Debes asociar al menos una persona antes de enviar el formulario.',
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
       }
     }
   }

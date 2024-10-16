@@ -1,27 +1,54 @@
-# TaskManager
+# Aplicación de Gestión de Tareas y Personas
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+Este proyecto es una aplicación web desarrollada en **Angular 16** para gestionar tareas y personas asociadas. Proporciona una interfaz gráfica intuitiva que permite crear y administrar tareas, asignar personas, y gestionar sus habilidades.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Enlace de Producción
 
-## Code scaffolding
+El código en producción está disponible en el siguiente enlace:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+## Enlace de Producción
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+El código en producción está disponible en el siguiente enlace:
 
-## Running unit tests
+https://task-manager-wecv-8nxtrek35-proyectos-projects-6dda2c6a.vercel.app/
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Funcionalidades
 
-## Running end-to-end tests
+1. **Crear Tareas**: Añadir nuevas tareas.
+2. **Listar Tareas**: Ver todas las tareas creadas.
+3. **Marcar Tareas como Completadas**: Gestionar el estado de las tareas (completadas o pendientes).
+4. **Filtrar Tareas por Estado**: Filtrar las tareas por completadas o pendientes.
+5. **Asignar Personas a Tareas**: Asignar personas a las tareas, incluyendo su nombre completo, edad, y habilidades.
+6. **Añadir y Eliminar Personas**: Añadir o eliminar personas de las tareas.
+7. **Añadir y Eliminar Habilidades**: Gestionar las habilidades de cada persona (añadir o eliminar).
+8. **Formulario Reactivo con Validaciones**: Formularios con validaciones estrictas (nombres, edades y habilidades).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Validaciones del Formulario
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Nombre Completo**: Obligatorio, mínimo 5 caracteres y debe ser único dentro de la misma tarea.
+- **Edad**: Obligatorio, y debe ser mayor de 18 años.
+- **Habilidades**: Cada persona debe tener al menos una habilidad asignada.
+
+
+## Diseño
+
+- **Mobile First Design**: La aplicación está optimizada para dispositivos móviles.
+- **Componentes Standalone**: Al menos un componente está desarrollado como standalone.
+
+
+## Consumo de API REST
+
+La aplicación tiene la capacidad de consumir una API REST para obtener y almacenar tareas y personas asociadas. Se utilizó la API de ejemplo: [jsonplaceholder.typicode.com/todos](https://jsonplaceholder.typicode.com/todos).
+
+
+## Tecnologías Utilizadas
+
+- **Angular 16**
+- **Formularios Reactivos**
+- **HTML5 y CSS3**
+
+
+
